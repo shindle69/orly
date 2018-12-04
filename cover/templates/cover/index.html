@@ -1,0 +1,17 @@
+{% extends "cover/layout.html" %}
+
+{% block content %}
+    cover/index.html
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>            
+            {{ form }}
+        </table>
+        <input type="submit" value="Generator O RLY"/>
+    </form> 
+    {{ form.get_params }}
+    <hr />
+    {% if form.get_params %}
+        <img src="{% url "cover:image_generator" %}?{{ form.get_params }}" />
+    {% endif %}
+{% endblock %}
