@@ -1,12 +1,15 @@
 from urllib.parse import urlencode
 from django import forms
+from .util import COLOR_CODE
 
 class CoverForm(forms.Form):
+
+    COLOR_CHOICES= [(i,str(COLOR_CODE[i])) for i in range(len(COLOR_CODE))]
     title = forms.CharField()
     top_text = forms.CharField()
     author = forms.CharField()
     animal_code = forms.ChoiceField(choices=[(i,i) for i in range(1,41)])
-    color_code = forms.ChoiceField(choices=[(i,i) for i in range(1,17)])
+    color_code = forms.ChoiceField(choices=COLOR_CHOICES)
     guide_text = forms.CharField()
     guide_text_placement = forms.ChoiceField(
         choices=[
