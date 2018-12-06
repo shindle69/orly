@@ -1,17 +1,28 @@
 {% extends "cover/layout.html" %}
+{% load bootstrap4 %}
 
 {% block content %}
-    cover/index.html
-    <form action="" method="POST">
-        {% csrf_token %}
-        <table>            
-            {{ form }}
-        </table>
-        <input type="submit" value="Generator O RLY"/>
-    </form> 
-    {{ form.get_params }}
-    <hr />
-    {% if form.get_params %}
-        <img src="{% url "cover:image_generator" %}?{{ form.get_params }}" />
-    {% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <table>            
+                    {% bootstrap_form form %}
+                </table>
+                <input type="submit" value="Generator O RLY" class="btn btn-primary"/>
+            </form> 
+            {{ form.get_params }}
+            <hr />
+            
+        </div>
+        <div class="col-sm-6">
+            {% if form.get_params %}
+                <img src="{% url "cover:image_generator" %}?{{ form.get_params }}" />
+            {% endif %}
+        </div>
+    </div>
+</div>
+    
+    
 {% endblock %}
